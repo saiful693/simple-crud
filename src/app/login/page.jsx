@@ -1,5 +1,4 @@
 "use client"
-import { redirect } from 'next/dist/server/api-utils';
 import React from 'react';
 import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation';
@@ -65,4 +64,4 @@ const Page = () => {
     );
 };
 
-export default LoginPage;
+export default Page;
