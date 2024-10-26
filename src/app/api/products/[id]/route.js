@@ -1,6 +1,7 @@
 
 import { connectDB } from "@/lib/connectDB";
 import { ObjectId } from "mongodb";
+import { NextResponse } from "next/server";
 
 export async function PUT(request, { params }) {
     const { id } = await params;
@@ -16,10 +17,10 @@ export async function PUT(request, { params }) {
             { $set: { name, price } }
         );
 
-        return new Response(JSON.stringify({ message: 'Product updated successfully' }), { status: 200 });
+        return new NextResponse(JSON.stringify({ message: 'Product updated successfully' }), { status: 200 });
     } catch (error) {
         console.error('Error updating product:', error);
-        return new Response(JSON.stringify({ message: 'Server error while updating product' }), { status: 500 });
+        return new NextResponse(JSON.stringify({ message: 'Server error while updating product' }), { status: 500 });
     }
 }
 
@@ -30,9 +31,9 @@ export async function DELETE(request, { params }) {
         const db = await connectDB();
         const result = await db.collection('products').deleteOne({ _id: new ObjectId(id) });
 
-        return new Response(JSON.stringify({ message: 'Product deleted successfully' }), { status: 200 });
+        return new NextResponse(JSON.stringify({ message: 'Product deleted successfully' }), { status: 200 });
     } catch (error) {
         console.error('Error deleting product:', error);  // Log the error for debugging
-        return new Response(JSON.stringify({ message: 'Server error while deleting product' }), { status: 500 });
+        return new NextResponse(JSON.stringify({ message: 'Server error while deleting product' }), { status: 500 });
     }
 }

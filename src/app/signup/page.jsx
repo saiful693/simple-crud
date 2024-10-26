@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import Swal from 'sweetalert2';
 
-const page = () => {
+const Page = () => {
     const router = useRouter()
     const handleSignup = async (event) => {
         event.preventDefault();
@@ -13,7 +13,7 @@ const page = () => {
             email: event.target.email.value,
             password: event.target.password.value,
         };
-        const response = await fetch("http://localhost:3000/signup/api", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/signup/api`, {
             method: "POST",
             body: JSON.stringify(newUser),
             headers: {
@@ -89,4 +89,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default SignupPage;

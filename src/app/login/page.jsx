@@ -4,7 +4,7 @@ import React from 'react';
 import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation';
 
-const page = () => {
+const Page = () => {
     const router = useRouter();
 
     const handleLogin = async (event) => {
@@ -65,4 +65,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default LoginPage;

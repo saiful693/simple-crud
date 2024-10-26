@@ -24,7 +24,7 @@ const Products = () => {
     // Fetch products from API
     const fetchProducts = async () => {
         setLoading(true);
-        const res = await fetch(`http://localhost:3000/api/products`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`);
         const data = await res.json();
         setProducts(data);
         setLoading(false);
@@ -35,7 +35,7 @@ const Products = () => {
         e.preventDefault();
         const newProduct = { name: e.target.name.value, price: e.target.price.value };
 
-        await fetch(`http://localhost:3000/api/products`, {
+        await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newProduct),
@@ -46,7 +46,7 @@ const Products = () => {
 
     // Delete a product
     const handleDeleteProduct = async (id) => {
-        await fetch(`http://localhost:3000/api/products/${id}`, { method: 'DELETE' });
+        await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${id}`, { method: 'DELETE' });
         fetchProducts();
     };
 
@@ -55,7 +55,7 @@ const Products = () => {
         e.preventDefault();
         const updatedProduct = { name: e.target.name.value, price: e.target.price.value };
 
-        await fetch(`http://localhost:3000/api/products/${editProduct._id}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${editProduct._id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedProduct),
